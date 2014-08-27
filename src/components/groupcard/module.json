@@ -1,0 +1,10 @@
+{
+  "module": "material.components.groupcard",
+  "name": "SoPro GroupCard",
+  "demos": {
+    "demo1": {
+      "name": "Group Card Basic Usage",
+      "files": ["demo1/*"]
+    }
+  }
+}

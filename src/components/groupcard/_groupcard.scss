@@ -1,0 +1,61 @@
+material-groupcard {
+
+  box-shadow: $card-box-shadow;
+
+  padding: $card-padding;
+  margin: $card-margin;
+
+  border-radius: $card-border-radius;
+
+  .material-groupcard-image {
+    min-width: 100%;
+    @include calc(width, "100% + #{$card-padding}*2");
+    margin-left: -10px;
+    margin-top: -10px;
+    border-radius: $card-border-radius $card-border-radius 0 0;
+  }
+
+}
+
+material-groupcard {
+  display: inline-block;
+  min-height: 100px;
+  min-width: 200px;
+}
+
+material-groupcard.active {
+  max-height: 250px;
+  min-width: 200px;
+  overflow: auto;
+}
+
+.groupcardHotspot {
+  cursor: pointer;
+}
+
+.face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  margin: 16px;
+}
+
+/* Animations */
+.animate-show {
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  background:white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}

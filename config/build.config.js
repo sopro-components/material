@@ -89,6 +89,8 @@ module.exports = {
       'src/components/toast/toast.js',
       'src/components/toolbar/toolbar.js',
       'src/components/whiteframe/whiteframe.js',
+      'src/components/groupcard/groupcard.js',
+      'src/components/iconbutton/iconbutton.js',
 
       //Services
       'src/services/attrBind/attrBind.js',

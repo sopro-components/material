@@ -1,0 +1,10 @@
+{
+  "module": "material.components.iconbutton",
+  "name": "Icon Button",
+  "demos": {
+    "demo1": {
+      "name": "Basic Icon Button",
+      "files": ["demo1/*"]
+    }
+  }
+}
