@@ -92,7 +92,6 @@ module.exports = {
       'src/components/toolbar/toolbar.js',
       'src/components/whiteframe/whiteframe.js',
       'src/components/groupcard/groupcard.js',
-      'src/components/iconbutton/iconbutton.js',
       'src/components/customform/customform.js',
 
       //Services
