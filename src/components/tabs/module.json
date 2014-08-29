@@ -3,10 +3,6 @@
   "name": "Tabs",
   "js": ["tabs.js", "util/*.js"],
   "demos": {
-    "demo1": {
-      "name": "Testimonials (tabs on bottom):",
-      "files": ["demos/demo1/*"]
-    },
     "demo2": {
       "name": "Static Tabs, external content, noInk:",
       "files": ["demos/demo2/*"]
@@ -18,10 +14,6 @@
     "demo3": {
       "name": "Dynamic Tabs (buttons only):",
       "files": ["demos/demo3/*"]
-    },
-    "demo5": {
-      "name": "Dynamic Tabs (buttons only) with $location & routing: ",
-      "files": ["demos/demo5/*"]
     }
   }
 }

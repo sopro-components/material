@@ -1,7 +1,6 @@
 describe('materialTabs directive', function() {
 
-  beforeEach(module('material.components.tabs'));
-
+  beforeEach(module('material.components.tabs', 'material.decorators'));
 
   describe('controller', function(){
 
@@ -24,6 +23,13 @@ describe('materialTabs directive', function() {
       expect(controller.noink).toBeFalsy();
       expect(controller.nobar).toBeFalsy();
 
+    });
+
+    it('should assign ARIA roles', function(){
+      // TODO: this needs more coverage for material-tab
+      var el = setup();
+
+      expect(el.eq(0).attr('role')).toBe('tablist');
     });
 
     xit('should pass down "nobar" to hide the <div class="selectionBar">', function()

@@ -1,5 +1,6 @@
 
-material-radio-button {
+material-radio-button,
+.material-switch-thumb { // Used in switch
   display: block;
   margin: 15px;
   white-space: nowrap;
@@ -73,10 +74,20 @@ material-radio-button {
     vertical-align: middle;
     white-space: normal;
     pointer-events: none;
+    width: auto;
   }
 
   .circle {
     border-radius: 50%;
   }
 
+}
+material-radio-group {
+  border: 1px dotted transparent;
+  display: block;
+  outline: none;
+
+  &:focus {
+    border-color: $input-focused-border-color;
+  }
 }

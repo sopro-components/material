@@ -24,7 +24,7 @@ module.exports = {
       return !!module;
     }),
 
-  componentsModule: "angular.module('ngMaterial', [ 'ng', 'ngAnimate', 'material.services.attrBind', 'material.services.compiler', 'material.services.position', 'material.services.registry', 'material.services.throttle', <%= components.join(',') %>]);\n",
+  componentsModule: "angular.module('ngMaterial', [ 'ng', 'ngAnimate', 'material.services.attrBind', 'material.services.compiler', 'material.services.position', 'material.services.registry', 'material.services.throttle', 'material.decorators', 'material.services.expectAria', <%= components.join(',') %>]);\n",
 
   dist: 'dist',
 
@@ -65,6 +65,7 @@ module.exports = {
 
       //Utilities
       'src/base/utils.js',
+      'src/base/constants.js',
 
       // Ink Components
       'src/components/animate/effects.js',
@@ -84,6 +85,7 @@ module.exports = {
       'src/components/radioButton/radioButton.js',
       'src/components/sidenav/sidenav.js',
       'src/components/slider/slider.js',
+      'src/components/switch/switch.js',
       'src/components/tabs/tabs.js',
       'src/components/tabs/util/*.js',
       'src/components/toast/toast.js',
@@ -94,6 +96,8 @@ module.exports = {
       'src/components/customform/customform.js',
 
       //Services
+      'src/services/decorators.js',
+      'src/services/expectAria/expectAria.js',
       'src/services/attrBind/attrBind.js',
       'src/services/compiler/compiler.js',
       'src/services/position/position.js',
@@ -110,7 +114,7 @@ module.exports = {
   },
 
   repository: pkg.repository.url
-    .replace(/^git:/,'https:')
+    .replace(/^git/,'https')
     .replace(/(\.git)?\/?$/,'')
   
 };

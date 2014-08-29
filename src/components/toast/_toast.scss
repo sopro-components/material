@@ -7,10 +7,9 @@ material-toast {
   background: #323232;
   color: #f1f1f1;
   min-height: 48px;
-  min-width: 288px;
   padding-left: 24px;
   padding-right: 24px;
-  height: 24px;
+  height: $toast-height;
 
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   border-radius: 2px;
@@ -21,7 +20,7 @@ material-toast {
   max-width: 879px;
   max-height: 40px;
 
-  bottom: 12px;
+  z-index: $z-index-toast;
 
   material-button {
     color: white;
@@ -31,58 +30,26 @@ material-toast {
     border-radius: 24px;
   }
 
-  &.bottom {
-    bottom: 12px;
-  }
-  &.top {
-    top: 12px;
-  }
-  &.left {
-    left: 12px;
-  }
-  &.right {
-    right: 12px;
-  }
-
-  &.fit {
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    border-radius: 0;
-    &.bottom {
-      bottom: 0;
-    }
-    &.top {
-      top: 0;
-    }
-  }
-
   opacity: 1;
-  transform: translate(0, 0);
-  -webkit-transform: translate(0, 0);
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
-  -webkit-transition: -webkit-transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  @include transform-translate3d(0,0,0);
+  @include transition(all 0.2s linear);
 
   &.ng-enter {
-    // Take slightly longer to enter
-    -webkit-transition-duration: 0.35s;
-    transition-duration: 0.35s;
+    @include transform-translate3d(0,100%,0);
+    &.top {
+      @include transform-translate3d(0,-100%,0);
+    }
     opacity: 0;
     &.ng-enter-active {
+      @include transform-translate3d(0,0,0);
       opacity: 1;
     }
   }
   &.ng-leave.ng-leave-active {
     opacity: 0;
-    &.bottom {
-      -webkit-transform: translate(0, 100%);
-      transform: translate(0, 100%);
-    }
+    @include transform-translate3d(0, 100%, 0);
     &.top {
-      -webkit-transform: translate(0, -100%);
-      transform: translate(0, -100%);
+      @include transform-translate3d(0, -100%, 0);
     }
   }
 }
@@ -95,3 +62,35 @@ material-toast {
   text-transform: uppercase;
   float: right;
 }
+
+@media (max-width: $layout-breakpoint-sm) {
+  material-toast {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border-radius: 0;
+    bottom: 0;
+    &.top {
+      bottom: auto;
+      top: 0;
+    }
+  }
+}
+@media (min-width: $layout-breakpoint-sm) {
+  material-toast {
+    min-width: 288px;
+    bottom: $toast-margin;
+    left: $toast-margin;
+    &.right {
+      left: auto;
+      right: $toast-margin;
+    }
+    &.top {
+      bottom: auto;
+      top: $toast-margin;
+    }
+  }
+}
+

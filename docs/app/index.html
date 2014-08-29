@@ -8,14 +8,15 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-animate.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-route.min.js"></script>
 <script src="docs.js"></script>
+<script src="docs-templates.js"></script>
 </head>
 <body layout="horizontal">
 
-  <material-sidenav class="material-sidenav-left material-whiteframe-z3" component-id="left">
+  <material-sidenav layout="vertical" class="material-sidenav-left material-whiteframe-z3" component-id="left">
 
     <material-toolbar class="material-theme-light material-medium-tall">
-      <h1 class="material-toolbar-tools">
-        <a href="#" ng-click="goHome()">Material Design</a>
+      <h1 class="material-toolbar-tools" style="padding-top:25px;">
+        <a href="#" ng-click="goHome()">Angular<br/>Material Design</a>
       </h1>
     </material-toolbar>
 
@@ -33,7 +34,7 @@
           ng-show="menu.isSectionSelected(section)"
           ng-repeat="page in section.pages"
           ng-class="{active: menu.isPageSelected(section, page)}"
-          ng-click="menu.selectPage(section, page); $event.stopImmediatePropagation()">
+          ng-mousedown="menu.selectPage(section, page)">
           <span ng-bind="page.humanName || page.name"></span>
           <material-ripple initial-opacity="0.4" opacity-decay-velocity="1.75"></material-ripple>
         </button>
@@ -46,8 +47,8 @@
   <div layout="vertical" layout-fill>
     <material-toolbar class="material-theme-dark material-medium-tall">
 
-      <div class="material-toolbar-tools">
-        <div class="menu-icon" ng-click="toggleMenu()" hide-md>
+      <div class="material-toolbar-tools" ng-click="toggleMenu()">
+        <div class="menu-icon" hide-md>
           <material-icon icon="img/icons/ic_menu_24px.svg">
           </material-icon>
         </div>
@@ -58,22 +59,20 @@
           ng-show="menu.currentPage">
           <img style="height: 16px;" src="img/docArrow.png" hide block-sm>
         </span>
-        <h3 ng-bind="menu.currentPage.humanName || menu.currentPage.name || 'Angular Material'">
+        <h3 ng-bind="menu.currentPage.humanName || menu.currentPage.name || 'Angular Material'" flex>
         </h3>
       </div>
 
-      <div class="material-toolbar-tools api-options-bar with-icon" 
+      <div class="material-toolbar-tools api-options-bar" 
         ng-if="currentDoc && currentDoc.docType === 'readme'">
         <span flex></span>
         <material-button
           ng-repeat="doc in currentComponent.docs" 
           ng-show="doc.docType !== 'readme'"
           ng-href="#{{doc.url}}" style="padding:3px;">
-            <div style="margin:2px;">
-              <span class="directive">&lt;</span>
-                {{doc.humanName || doc.name}}
-              <span class="directive">&gt;</span>
-            </div>
+            <span class="directive">&lt;</span>
+              {{doc.humanName || doc.name}}
+            <span class="directive">&gt;</span>
         </material-button>
       </div>
 
@@ -82,7 +81,7 @@
         <span flex></span>
         <material-button ng-href="#{{currentDoc.readmeUrl}}">
           <material-icon icon="/img/icons/ic_play_arrow_24px.svg"></material-icon>
-          View Demo
+          <span>View Demo</span>
         </material-button>
         <material-button ng-href="{{currentDoc.githubUrl}}">
           <material-icon icon="/img/icons/ic_launch_24px.svg"></material-icon>
@@ -91,7 +90,7 @@
         </material-button>
         <material-button ng-href="{{currentDoc.githubEditUrl}}" hide block-sm>
           <material-icon icon="/img/icons/ic_launch_24px.svg"></material-icon>
-          Improve This Doc
+          <span>Improve This Doc</span>
         </material-button>
       </div>
 

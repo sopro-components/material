@@ -13,6 +13,7 @@ var concat = require('gulp-concat');
 var footer = require('gulp-footer');
 var gulpif = require('gulp-if');
 var header = require('gulp-header');
+var html2js = require('gulp-ng-html2js');
 var jshint = require('gulp-jshint');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
@@ -47,7 +48,7 @@ gulp.task('watch', ['docs'], function() {
 /**
  * Docs
  */
-gulp.task('docs', ['docs-scripts', 'docs-css', 'docs-html', 'docs-app'], function() {
+gulp.task('docs', ['docs-scripts', 'docs-html2js', 'docs-css', 'docs-html', 'docs-app'], function() {
 });
 
 gulp.task('docs-scripts', ['demo-scripts'], function() {
@@ -55,6 +56,16 @@ gulp.task('docs-scripts', ['demo-scripts'], function() {
     .pipe(concat('docs.js'))
     .pipe(gulpif(IS_RELEASE_BUILD, uglify())
     .pipe(gulp.dest(buildConfig.docsDist)));
+});
+
+gulp.task('docs-html2js', function() {
+  return gulp.src('docs/app/**/*.tmpl.html')
+    .pipe(html2js({
+      moduleName: 'docsApp',
+      declareModule: false
+    }))
+    .pipe(concat('docs-templates.js'))
+    .pipe(gulp.dest(buildConfig.docsDist));
 });
 
 // demo-scripts: runs after scripts and docs-generate so both the docs-generated js
@@ -118,11 +129,15 @@ gulp.task('jshint', function() {
  */
 argv.browsers && (karmaConf.browsers = argv.browsers.trim().split(','));
 gulp.task('karma', function(done) {
-  karma.start(_.assign({}, karmaConf, {singleRun: true}), done);
+  karma.start(_.assign(karmaConf, {singleRun: true}), done);
 });
 
 gulp.task('karma-watch', function(done) {
-  karma.start(_.assign({}, karmaConf, {singleRun: false}), done);
+  karma.start(_.assign(karmaConf, {singleRun: false}), done);
+});
+
+gulp.task('karma-sauce', function(done) {
+  karma.start(require('./config/karma-sauce.conf.js'), done);
 });
 
 /**

@@ -54,14 +54,18 @@ material-button {
 
   // reserved for inner buttons and inner hrefs
   .material-button-inner {
-    position: absolute;
-    opacity: 0;
-    left: 0;
-    top: 0;
+    background: transparent;
+    border: none;
+    color: inherit;
+    text-transform: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
   }
 
   &[disabled] {
@@ -98,12 +102,12 @@ material-button {
 
   &.material-button-fab {
 
-    @include fab-position(bottom-right, auto, $button-fab-width/2, -$button-fab-height/2, auto);
-    @include fab-position(bottom-left, auto, auto, -$button-fab-height/2, $button-fab-width/2);
-    @include fab-position(top-right, -$button-fab-height/2, $button-fab-width/2, auto, auto);
-    @include fab-position(top-left, -$button-fab-height/2, auto, auto, $button-fab-width/2);
+    @include fab-position(bottom-right, auto, $button-fab-width/2, $button-fab-height/2, auto);
+    @include fab-position(bottom-left, auto, auto, $button-fab-height/2, $button-fab-width/2);
+    @include fab-position(top-right, $button-fab-height/2, $button-fab-width/2, auto, auto);
+    @include fab-position(top-left, $button-fab-height/2, auto, auto, $button-fab-width/2);
 
-    z-index: $button-fab-zindex;
+    z-index: $z-index-fab;
     padding: $button-fab-padding;
 
     width: $button-fab-width;
@@ -115,19 +119,26 @@ material-button {
     border-radius: 50%;
     overflow: hidden;
 
+    @include transform-translate3d(0,0,0);
+    -webkit-transition: -webkit-transform 0.2s linear;
+    transition: transform 0.2s linear;
+
   }
 }
 
-a.material-button {
-  padding: $button-padding;
-  line-height: $button-line-height;
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
+.material-toast-open-top {
+  material-button.material-button-fab-top-left,
+  material-button.material-button-fab-top-right {
+    @include transform-translate3d(0, $button-fab-toast-offset, 0);
   }
 }
+.material-toast-open-bottom {
+  material-button.material-button-fab-bottom-left,
+  material-button.material-button-fab-bottom-right {
+    @include transform-translate3d(0, -$button-fab-toast-offset, 0);
+  }
+}
+
 
 .material-button-group {
   @include flex-display();
