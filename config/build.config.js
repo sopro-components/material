@@ -91,6 +91,7 @@ module.exports = {
       'src/components/whiteframe/whiteframe.js',
       'src/components/groupcard/groupcard.js',
       'src/components/iconbutton/iconbutton.js',
+      'src/components/customform/customform.js',
 
       //Services
       'src/services/attrBind/attrBind.js',

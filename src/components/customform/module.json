@@ -1,0 +1,10 @@
+{
+  "module": "material.components.customform",
+  "name": "Custom Forms",
+  "demos": {
+    "demo1": {
+      "name": "Custom Form Basic Usage",
+      "files": ["demo1/*"]
+    }
+  }
+}
