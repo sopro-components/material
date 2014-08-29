@@ -1,6 +1,6 @@
 angular.module('material.services.expectAria', [])
 
-.service('$aria', [
+.service('$expectAria', [
   '$log',
   AriaService
 ]);
